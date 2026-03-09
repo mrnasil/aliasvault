@@ -4,12 +4,12 @@ Command-line interface for AliasVault password and alias management.
 
 ## Features
 
-- 🔐 **Login Command** - Authenticate with AliasVault API
-- ℹ️ **Info Command** - Display CLI and system information
-- 🧪 **100% Test Coverage** - Comprehensive test suite with 43 tests
-- 🌍 **Cross-Platform** - Works on Windows, macOS, and Linux
-- 📦 **TypeScript** - Fully typed with TypeScript
-- ⚡ **Fast** - Built with modern tooling
+- Login command for API authentication
+- Info command for system diagnostics
+- 100% test coverage with comprehensive test suite
+- Cross-platform support (Windows, macOS, Linux)
+- TypeScript implementation with full type safety
+- Modern tooling with Vitest and Commander.js
 
 ## Installation
 
@@ -34,7 +34,7 @@ Authenticate with the AliasVault API:
 # Basic login (coming soon)
 aliasvault login
 
-# Login with username and password
+# Login with credentials
 aliasvault login -u username -p password
 aliasvault login --username username --password password
 ```
@@ -126,16 +126,16 @@ pnpm test:coverage    # Run tests with coverage report
 
 The CLI has comprehensive test coverage with 43 tests covering:
 
-- ✅ Command execution with various options
-- ✅ Help and version flag handling
-- ✅ Error handling for unknown commands
-- ✅ Cross-platform compatibility
-- ✅ JSON output formatting
-- ✅ Fallback behavior
+- Command execution with various options
+- Help and version flag handling
+- Error handling for unknown commands
+- Cross-platform compatibility
+- JSON output formatting
+- Fallback behavior
 
 ### Test Coverage
 
-Current coverage: **100%**
+Current coverage: 100%
 
 ```
 File          | % Stmts | % Branch | % Funcs | % Lines
@@ -163,27 +163,27 @@ pnpm test:coverage
 
 ## Cross-Platform Compatibility
 
-The CLI is designed to work seamlessly across all major platforms:
+The CLI is designed to work seamlessly across all major platforms.
 
 ### Supported Platforms
 
-- ✅ **Windows** (win32) - cmd.exe, PowerShell, Git Bash
-- ✅ **macOS** (darwin) - Terminal, iTerm2, zsh, bash
-- ✅ **Linux** (linux) - bash, zsh, fish, sh
-- ✅ **FreeBSD** (freebsd)
-- ✅ **OpenBSD** (openbsd)
-- ✅ **Solaris** (sunos)
-- ✅ **AIX** (aix)
+- Windows (win32)
+- macOS (darwin)
+- Linux (linux)
+- FreeBSD (freebsd)
+- OpenBSD (openbsd)
+- Solaris (sunos)
+- AIX (aix)
 
 ### Supported Architectures
 
-- ✅ **x64** (64-bit Intel/AMD)
-- ✅ **arm64** (64-bit ARM - Apple Silicon, ARM servers)
-- ✅ **ia32** (32-bit Intel/AMD)
-- ✅ **arm** (32-bit ARM)
-- ✅ **s390x** (IBM System z)
-- ✅ **ppc64** (PowerPC 64-bit)
-- ✅ **mips** (MIPS architecture)
+- x64 (64-bit Intel/AMD)
+- arm64 (64-bit ARM - Apple Silicon, ARM servers)
+- ia32 (32-bit Intel/AMD)
+- arm (32-bit ARM)
+- s390x (IBM System z)
+- ppc64 (PowerPC 64-bit)
+- mips (MIPS architecture)
 
 ### Testing Cross-Platform Compatibility
 
@@ -231,23 +231,23 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ### Current Version (0.1.0)
 
-- ✅ Basic CLI structure
-- ✅ Login command (placeholder)
-- ✅ Info command
-- ✅ 100% test coverage
-- ✅ Cross-platform support
+- Basic CLI structure
+- Login command (placeholder)
+- Info command
+- 100% test coverage
+- Cross-platform support
 
 ### Upcoming Features
 
-- 🔄 Full login implementation with API integration
-- 🔄 Logout command
-- 🔄 Password management commands
-- 🔄 Alias management commands
-- 🔄 Configuration file support
-- 🔄 Shell autocompletion
-- 🔄 Interactive prompts
-- 🔄 Colored output
-- 🔄 Progress indicators
+- Full login implementation with API integration
+- Logout command
+- Password management commands
+- Alias management commands
+- Configuration file support
+- Shell autocompletion
+- Interactive prompts
+- Colored output
+- Progress indicators
 
 ## License
 
@@ -261,4 +261,4 @@ For issues, questions, or contributions, please visit:
 
 ---
 
-**Note**: This CLI is part of the AliasVault project. For more information about the full AliasVault ecosystem, see the main repository README.
+This CLI is part of the AliasVault project. For more information about the full AliasVault ecosystem, see the main repository README.
