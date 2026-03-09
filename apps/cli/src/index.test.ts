@@ -36,6 +36,14 @@ describe('CLI Program', () => {
       expect(loginCommand?.description()).toBe('Login to AliasVault');
     });
 
+    it('should have info command registered', () => {
+      const program = createProgram();
+      const commands = program.commands;
+      const infoCommand = commands.find(cmd => cmd.name() === 'info');
+      expect(infoCommand).toBeDefined();
+      expect(infoCommand?.description()).toBe('Get information about AliasVault CLI');
+    });
+
     it('should have username option in login command', () => {
       const program = createProgram();
       const loginCommand = program.commands.find(cmd => cmd.name() === 'login');
@@ -50,6 +58,13 @@ describe('CLI Program', () => {
       const passwordOption = loginCommand?.options.find(opt => opt.long === '--password');
       expect(passwordOption).toBeDefined();
       expect(passwordOption?.short).toBe('-p');
+    });
+
+    it('should have json option in info command', () => {
+      const program = createProgram();
+      const infoCommand = program.commands.find(cmd => cmd.name() === 'info');
+      const jsonOption = infoCommand?.options.find(opt => opt.long === '--json');
+      expect(jsonOption).toBeDefined();
     });
   });
 
@@ -100,6 +115,24 @@ describe('CLI Program', () => {
       await program.parseAsync(['node', 'aliasvault', 'login', '-u', 'testuser', '--password', 'testpass']);
       
       expect(consoleLogSpy).toHaveBeenCalledWith('Logging in as testuser...');
+    });
+
+    it('should execute info command without options', async () => {
+      const program = createProgram();
+      await program.parseAsync(['node', 'aliasvault', 'info']);
+      
+      expect(consoleLogSpy).toHaveBeenCalled();
+      const output = consoleLogSpy.mock.calls[0][0] as string;
+      expect(output).toContain('AliasVault CLI Information');
+    });
+
+    it('should execute info command with --json option', async () => {
+      const program = createProgram();
+      await program.parseAsync(['node', 'aliasvault', 'info', '--json']);
+      
+      expect(consoleLogSpy).toHaveBeenCalled();
+      const output = consoleLogSpy.mock.calls[0][0] as string;
+      expect(() => JSON.parse(output)).not.toThrow();
     });
   });
 
