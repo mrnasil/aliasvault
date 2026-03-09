@@ -3,6 +3,7 @@
 import { Command } from 'commander';
 import { loginCommand } from './commands/login';
 import { infoCommand } from './commands/info';
+import { configCommand } from './commands/config';
 
 export function createProgram(): Command {
   const program = new Command();
@@ -30,6 +31,19 @@ export function createProgram(): Command {
     .option('--json', 'Output as JSON')
     .action((options) => {
       const result = infoCommand(options);
+      console.log(result);
+    });
+
+  // Config command
+  program
+    .command('config')
+    .description('Manage CLI configuration')
+    .option('--list', 'List all configuration')
+    .option('--get <key>', 'Get configuration value')
+    .option('--set <key=value>', 'Set configuration value')
+    .option('--reset', 'Reset configuration to defaults')
+    .action((options) => {
+      const result = configCommand(options);
       console.log(result);
     });
 
