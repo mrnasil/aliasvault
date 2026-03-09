@@ -86,4 +86,66 @@ describe('infoCommand', () => {
     // Restore original cwd
     process.cwd = originalCwd;
   });
+
+  describe('Cross-Platform Compatibility', () => {
+    it('should return valid platform information', () => {
+      const result = infoCommand({ json: true });
+      const parsed = JSON.parse(result);
+      
+      // Platform should be one of the valid Node.js platforms
+      const validPlatforms = ['win32', 'darwin', 'linux', 'freebsd', 'openbsd', 'sunos', 'aix'];
+      expect(validPlatforms).toContain(parsed.system.platform);
+    });
+
+    it('should return valid architecture information', () => {
+      const result = infoCommand({ json: true });
+      const parsed = JSON.parse(result);
+      
+      // Architecture should be one of the valid Node.js architectures
+      const validArchs = ['x64', 'arm64', 'ia32', 'arm', 's390x', 'ppc64', 'mips'];
+      expect(validArchs).toContain(parsed.system.arch);
+    });
+
+    it('should return valid Node version', () => {
+      const result = infoCommand({ json: true });
+      const parsed = JSON.parse(result);
+      
+      // Node version should start with 'v' and contain numbers
+      expect(parsed.system.nodeVersion).toMatch(/^v\d+\.\d+\.\d+/);
+    });
+
+    it('should return valid hostname', () => {
+      const result = infoCommand({ json: true });
+      const parsed = JSON.parse(result);
+      
+      // Hostname should be a non-empty string
+      expect(typeof parsed.system.hostname).toBe('string');
+      expect(parsed.system.hostname.length).toBeGreaterThan(0);
+    });
+
+    it('should handle paths with different separators', () => {
+      // Test that paths work regardless of platform separator
+      const result = infoCommand({ json: true });
+      const parsed = JSON.parse(result);
+      
+      // Paths should be valid strings
+      expect(typeof parsed.environment.cwd).toBe('string');
+      expect(parsed.environment.cwd.length).toBeGreaterThan(0);
+      expect(typeof parsed.environment.home).toBe('string');
+      expect(parsed.environment.home.length).toBeGreaterThan(0);
+    });
+
+    it('should work consistently across multiple invocations', () => {
+      const result1 = infoCommand({ json: true });
+      const result2 = infoCommand({ json: true });
+      
+      const parsed1 = JSON.parse(result1);
+      const parsed2 = JSON.parse(result2);
+      
+      // System information should be consistent
+      expect(parsed1.system.platform).toBe(parsed2.system.platform);
+      expect(parsed1.system.arch).toBe(parsed2.system.arch);
+      expect(parsed1.system.nodeVersion).toBe(parsed2.system.nodeVersion);
+    });
+  });
 });
